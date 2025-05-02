@@ -20,7 +20,21 @@ func startRepl() {
 			continue
 		}
 
-		fmt.Printf("Your command was: %s\n", words[0])
+		command := words[0]
+		isCommand := false
+		for c, v := range Commands {
+			if c == command {
+				isCommand = true
+
+				if err := v.callback(); err != nil {
+					fmt.Println(err)
+				}
+			}
+		}
+
+		if !isCommand {
+			fmt.Println("Unknown command")
+		}
 	}
 }
 
