@@ -20,19 +20,13 @@ func startRepl() {
 			continue
 		}
 
-		command := words[0]
-		isCommand := false
-		for c, v := range Commands {
-			if c == command {
-				isCommand = true
-
-				if err := v.callback(); err != nil {
-					fmt.Println(err)
-				}
+		commandName := words[0]
+		command, isCommand := commands[commandName]
+		if isCommand {
+			if err := command.callback(); err != nil {
+				fmt.Println(err)
 			}
-		}
-
-		if !isCommand {
+		} else {
 			fmt.Println("Unknown command")
 		}
 	}
