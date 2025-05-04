@@ -23,7 +23,7 @@ func startRepl() {
 		commandName := words[0]
 		command, isCommand := commands[commandName]
 		if isCommand {
-			if err := command.callback(); err != nil {
+			if err := command.callback(command.config); err != nil {
 				fmt.Println(err)
 			}
 		} else {
