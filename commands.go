@@ -7,11 +7,6 @@ type cliCommand struct {
 	config      *config
 }
 
-type config struct {
-	previous string
-	next     string
-}
-
 var commands map[string]cliCommand
 
 func init() {
@@ -27,6 +22,12 @@ func init() {
 			description: "Displays a help message",
 			callback:    commandHelp,
 			config:      nil,
+		},
+		"map": {
+			name:        "map",
+			description: "Displays location areas",
+			callback:    commandMap,
+			config:      &configMap,
 		},
 	}
 }
