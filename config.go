@@ -5,6 +5,11 @@ type config struct {
 	Next     string
 }
 
+var configMap = config{
+	Previous: "",
+	Next:     "https://pokeapi.co/api/v2/location-area",
+}
+
 func updateConfig(config *config, next, previous *string) {
 	if next != nil {
 		config.Next = *next
