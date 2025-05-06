@@ -3,6 +3,7 @@ package pokeapi
 import (
 	"encoding/json"
 	"fmt"
+	"io"
 	"net/http"
 )
 
@@ -17,15 +18,27 @@ type LocationAreas struct {
 }
 
 func GetLocationAreas(url string) (LocationAreas, error) {
-	res, err := http.Get(url)
-	if err != nil {
-		return LocationAreas{}, fmt.Errorf("Error requesting data: %w", err)
-	}
-	defer res.Body.Close()
+	data, ok := cache.Get(url)
+	if !ok {
+		res, err := http.Get(url)
+		if err != nil {
+			return LocationAreas{}, fmt.Errorf("Error requesting data: %w", err)
+		}
+		defer res.Body.Close()
 
-	decoder := json.NewDecoder(res.Body)
+		dataRes, err := io.ReadAll(res.Body)
+		if err != nil {
+			return LocationAreas{}, fmt.Errorf(
+				"Error reading response body: %w", err,
+			)
+		}
+
+		cache.Add(url, dataRes)
+		data = dataRes
+	}
+
 	var locationAreas LocationAreas
-	if err := decoder.Decode(&locationAreas); err != nil {
+	if err := json.Unmarshal(data, &locationAreas); err != nil {
 		return LocationAreas{}, fmt.Errorf(
 			"Error decoding response body: %w", err,
 		)
