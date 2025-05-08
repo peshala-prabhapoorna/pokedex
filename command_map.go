@@ -6,7 +6,7 @@ import (
 	"github.com/peshala-prabhapoorna/pokedex/internal/pokeapi"
 )
 
-func commandMap(config *config) error {
+func commandMap(config *config, _ string) error {
 	if config.Next == "" {
 		fmt.Println("You're on the last page")
 		return nil

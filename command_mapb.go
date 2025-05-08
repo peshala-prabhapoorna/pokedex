@@ -6,7 +6,7 @@ import (
 	"github.com/peshala-prabhapoorna/pokedex/internal/pokeapi"
 )
 
-func commandMapb(config *config) error {
+func commandMapb(config *config, _ string) error {
 	if config.Previous == "" {
 		fmt.Println("You're on the first page")
 		return nil
