@@ -17,6 +17,12 @@ func init() {
 			callback:    commandExit,
 			config:      nil,
 		},
+		"explore": {
+			name:        "explore",
+			description: "Display Pokemons in a location area",
+			callback:    commandExplore,
+			config:      nil,
+		},
 		"help": {
 			name:        "help",
 			description: "Displays a help message",
