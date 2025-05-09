@@ -7,3 +7,5 @@ import (
 )
 
 var cache = pokecache.NewCache(8 * time.Second)
+
+var EndpointLocationArea = "https://pokeapi.co/api/v2/location-area"

@@ -1,5 +1,7 @@
 package main
 
+import "github.com/peshala-prabhapoorna/pokedex/internal/pokeapi"
+
 type config struct {
 	Previous string
 	Next     string
@@ -7,7 +9,7 @@ type config struct {
 
 var configMap = config{
 	Previous: "",
-	Next:     "https://pokeapi.co/api/v2/location-area",
+	Next:     pokeapi.EndpointLocationArea,
 }
 
 func updateConfig(config *config, next, previous *string) {
