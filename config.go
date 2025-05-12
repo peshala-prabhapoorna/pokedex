@@ -3,25 +3,21 @@ package main
 import "github.com/peshala-prabhapoorna/pokedex/internal/pokeapi"
 
 type config struct {
-	Previous string
-	Next     string
-}
-
-var configMap = config{
-	Previous: "",
-	Next:     pokeapi.EndpointLocationArea,
+	previous string
+	next     string
+	pokedex  map[string]pokeapi.Pokemon
 }
 
 func updateConfig(config *config, next, previous *string) {
 	if next != nil {
-		config.Next = *next
+		config.next = *next
 	} else {
-		config.Next = ""
+		config.next = ""
 	}
 
 	if previous != nil {
-		config.Previous = *previous
+		config.previous = *previous
 	} else {
-		config.Previous = ""
+		config.previous = ""
 	}
 }

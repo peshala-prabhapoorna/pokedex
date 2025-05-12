@@ -7,12 +7,12 @@ import (
 )
 
 func commandMap(cfg *config, args ...string) error {
-	if cfg.Next == "" {
+	if cfg.next == "" {
 		fmt.Println("You're on the last page")
 		return nil
 	}
 
-	locationAreas, err := pokeapi.GetLocationAreas(cfg.Next)
+	locationAreas, err := pokeapi.GetLocationAreas(cfg.next)
 	if err != nil {
 		return fmt.Errorf("Error getting location areas: %w", err)
 	}
