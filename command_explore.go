@@ -12,7 +12,7 @@ func commandExplore(cfg *config, args ...string) error {
 	}
 	locationArea := args[0]
 
-	url := pokeapi.EndpointLocationArea + "/" + locationArea
+	url := pokeapi.EndpointLocationArea(&locationArea)
 	areaPokemons, err := pokeapi.GetAreaPokemons(url)
 	if err != nil {
 		return fmt.Errorf("Error getting Pokemons in %s.", locationArea)

@@ -22,7 +22,7 @@ func commandCatch(cfg *config, args ...string) error {
 
 	fmt.Printf("Throwing a Pokeball at %s...\n", pokemonName)
 
-	url := "https://pokeapi.co/api/v2/pokemon/" + pokemonName
+	url := pokeapi.EndpointPokemon(pokemonName)
 	pokemon, err := pokeapi.GetPokemon(url)
 	if err != nil {
 		return fmt.Errorf("Error getting Pokemon %s.", pokemonName)
