@@ -11,6 +11,12 @@ var commands map[string]cliCommand
 
 func init() {
 	commands = map[string]cliCommand{
+		"catch": {
+			name:        "catch",
+			description: "Try to catch a Pokemon",
+			callback:    commandCatch,
+			config:      nil,
+		},
 		"exit": {
 			name:        "exit",
 			description: "Exit the pokedex",
