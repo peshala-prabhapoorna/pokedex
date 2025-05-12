@@ -21,14 +21,14 @@ func startRepl() {
 		}
 
 		commandName := words[0]
-		var parameter string
-		if len(words) == 2 {
-			parameter = words[1]
+		args := []string{}
+		if len(words) > 1 {
+			args = words[1:]
 		}
 
 		command, isCommand := commands[commandName]
 		if isCommand {
-			if err := command.callback(command.config, parameter); err != nil {
+			if err := command.callback(command.config, args...); err != nil {
 				fmt.Println(err)
 			}
 		} else {

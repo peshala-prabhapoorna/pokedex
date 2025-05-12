@@ -6,18 +6,18 @@ import (
 	"github.com/peshala-prabhapoorna/pokedex/internal/pokeapi"
 )
 
-func commandMapb(config *config, _ string) error {
-	if config.Previous == "" {
+func commandMapb(cfg *config, args ...string) error {
+	if cfg.Previous == "" {
 		fmt.Println("You're on the first page")
 		return nil
 	}
 
-	locationAreas, err := pokeapi.GetLocationAreas(config.Previous)
+	locationAreas, err := pokeapi.GetLocationAreas(cfg.Previous)
 	if err != nil {
 		return fmt.Errorf("Error getting location areas: %w", err)
 	}
 
-	updateConfig(config, locationAreas.Next, locationAreas.Previous)
+	updateConfig(cfg, locationAreas.Next, locationAreas.Previous)
 
 	var output string
 	for _, locationArea := range locationAreas.Results {
