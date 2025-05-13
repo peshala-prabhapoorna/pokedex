@@ -7,15 +7,13 @@ import (
 	"github.com/peshala-prabhapoorna/pokedex/internal/pokeapi"
 )
 
-var pokedex = map[string]pokeapi.Pokemon{}
-
 func commandCatch(cfg *config, args ...string) error {
 	if len(args) != 1 {
 		return fmt.Errorf("Enter the name of the Pomemon to catch.")
 	}
 	pokemonName := args[0]
 
-	if pokemon, ok := pokedex[pokemonName]; ok {
+	if pokemon, ok := cfg.pokedex[pokemonName]; ok {
 		fmt.Printf("%s has already been caught!\n", pokemon.Name)
 		return nil
 	}
@@ -33,7 +31,7 @@ func commandCatch(cfg *config, args ...string) error {
 
 	if chance+catchingDifficulity > 0.5 {
 		fmt.Printf("%s was caught!\n", pokemon.Name)
-		pokedex[pokemon.Name] = pokemon
+		cfg.pokedex[pokemon.Name] = pokemon
 	} else {
 		fmt.Printf("%s escaped!\n", pokemon.Name)
 	}
