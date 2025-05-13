@@ -45,5 +45,10 @@ func init() {
 			description: "Displays the previous 20 location areas",
 			callback:    commandMapb,
 		},
+		"pokedex": {
+			name:        "pokedex",
+			description: "Display Pokemons that have been caught",
+			callback:    commandPokedex,
+		},
 	}
 }
