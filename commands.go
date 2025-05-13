@@ -30,6 +30,11 @@ func init() {
 			description: "Displays a help message",
 			callback:    commandHelp,
 		},
+		"inspect": {
+			name:        "inspect",
+			description: "Displays data of a Pokemon in the Pokedex",
+			callback:    commandInspect,
+		},
 		"map": {
 			name:        "map",
 			description: "Displays the next 20 location areas",
